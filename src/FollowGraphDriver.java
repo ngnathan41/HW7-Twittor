@@ -172,7 +172,8 @@ public class FollowGraphDriver {
             if(source == "")
                 System.out.println("You can not leave this field empty.");
             if(graph.getUserIndex(source) == -1)
-                System.out.println("There is no user with this name, Please choose a valid user!");
+                System.out.println("There is no user with this name," +
+                  "Please choose a valid user!");
             else
                 break;
         }
@@ -182,7 +183,8 @@ public class FollowGraphDriver {
             if(dest == "")
                 System.out.println("You can not leave this field empty.");
             if(graph.getUserIndex(dest) == -1)
-                System.out.println("There is no user with this name, Please choose a valid user!");
+                System.out.println("There is no user with this name, "
+                  + "Please choose a valid user!");
             else
                 break;
         }

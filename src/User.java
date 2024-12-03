@@ -77,7 +77,8 @@ public class User implements Serializable {
      * @return String of user details.
      */
     public String toString(){
-        return String.format("Name: %s, Index: %s, Followers: %s, Following: %s", userName, indexPos, followerCount, followingCount);
+        return String.format("Name: %s, Index: %s, Followers: %s, Following: %s"
+          , userName, indexPos, followerCount, followingCount);
     }
 
     /**

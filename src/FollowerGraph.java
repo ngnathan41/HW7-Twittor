@@ -54,7 +54,8 @@ public class FollowerGraph implements Serializable {
 
         //Deletes the row for the user and shifts other rows up.
         for(int i = index; i<connections.length - 1; i++){
-            System.arraycopy(connections[i+1], 0, connections[i], 0 , connections[i].length);
+            System.arraycopy(connections[i+1], 0,
+              connections[i], 0 , connections[i].length);
         }
         Arrays.fill(connections[connections.length-1], false);
 
@@ -152,7 +153,9 @@ public class FollowerGraph implements Serializable {
 
         Collections.reverse(path);
 
-        if(getUserIndex(path.get(0)) != start || path.size() == 0 || getUserIndex(path.get(path.size()-1)) != end)
+        if(getUserIndex(path.get(0)) != start
+          || path.size() == 0
+          || getUserIndex(path.get(path.size()-1)) != end)
             return "No Path";
         return String.join(" -> ", path);
     }
