@@ -1,7 +1,12 @@
 import java.io.*;
 import java.util.List;
 import java.util.Scanner;
-
+/** FollowerGraphDriver represents a CLI for FollowerGraph.
+ * @author Nathan Ng
+ *  email: nathan.ng@stonybrook.edu
+ *  ID: 116188023
+ *  Recitation: 4
+ */
 public class FollowGraphDriver {
     private static Scanner sc;
     private static FollowerGraph graph;
@@ -9,6 +14,7 @@ public class FollowGraphDriver {
     public static void main(String[] args) {
         sc = new Scanner(System.in);
         File file = new File("follow_graph.obj");;
+        //Loads saved data if it exists.
         try {
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
@@ -17,7 +23,7 @@ public class FollowGraphDriver {
             User.setUserCount(graph.size());
         }
         catch (Exception e) {
-            //System.out.println("follow_graph.obj is not found. New FollowGraph object will be created.");
+            System.out.println("follow_graph.obj is not found. New FollowGraph object will be created.");
             graph = new FollowerGraph();
         }
 
@@ -66,12 +72,18 @@ public class FollowGraphDriver {
         }
     }
 
+    /**
+     * Helper function to add a user to the graph.
+     */
     private static void addUser(){
         System.out.print("Please enter the name of the user: ");
         String userName = sc.nextLine().trim();
         graph.addUser(userName);
     }
 
+    /**
+     * Helper function to add a connection to the graph.
+     */
     private static void addConnection(){
         String source, dest;
 
@@ -82,17 +94,27 @@ public class FollowGraphDriver {
         graph.addConnection(source, dest);
     }
 
+    /**
+     * Helper function to load users to the graph.
+     */
     private static void loadUsers(){
         System.out.print("Enter the file name: ");
         String fileName = sc.nextLine().trim();
         graph.loadAllUsers(fileName);
     }
 
+    /**
+     * Helper function to load connections to the graph.
+     */
     private static void loadConnections(){
         System.out.print("Enter the file name: ");
         String fileName = sc.nextLine().trim();
         graph.loadAllConnections(fileName);
     }
+
+    /**
+     * Helper function to print users based on the given criteria.
+     */
     private static void printUsers(){
         String commands = """
                 (SA) Sort Users by Name
@@ -112,6 +134,9 @@ public class FollowGraphDriver {
         }
     }
 
+    /**
+     * Helper function to print the loops in the graph.
+     */
     private static void printLoops(){
         List<String> loops = graph.findAllLoops();
         if(loops.isEmpty()){
@@ -126,12 +151,19 @@ public class FollowGraphDriver {
             System.out.println(loop);
         }
     }
+
+    /**
+     * Helper function to remove a user from the graph.
+     */
     private static void removeUser(){
         System.out.println("Please enter the user to remove: ");
         String userName = sc.nextLine().trim();
         graph.removeUser(userName);
     }
 
+    /**
+     * Helper function to remove a connection from the graph.
+     */
     private static void removeConnection() {
         String source, dest;
         while (true) {
@@ -157,6 +189,10 @@ public class FollowGraphDriver {
         graph.removeConnection(source, dest);
 
     }
+
+    /**
+     * Helper function to find the shortest path between two users.
+     */
     private static void findShortestPath(){
         System.out.println("Please enter the desired source: ");
         String source = sc.nextLine().trim();
@@ -167,6 +203,10 @@ public class FollowGraphDriver {
         String[] nodes = path.split(" -> ");
         System.out.println("The number of users in this path is: " + nodes.length);
     }
+
+    /**
+     * Helper function to find all paths between two users.
+     */
     private static void findAllPaths(){
         System.out.println("Please enter the desired source: ");
         String source = sc.nextLine().trim();
